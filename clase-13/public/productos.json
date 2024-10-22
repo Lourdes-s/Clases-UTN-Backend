@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1, 
+        "titulo": "TV Samsung 72' ", 
+        "precio": 12000, 
+        "stock": 20
+    },
+    {
+        "id": 2, 
+        "titulo": "Celular Xiaomi", 
+        "precio": 800, 
+        "stock":  50
+    },
+    {
+        "id": 3, 
+        "titulo": "Ipad  Apple", 
+        "precio": 1500, 
+        "stock":   30
+    }
+]

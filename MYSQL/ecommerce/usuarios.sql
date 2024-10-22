@@ -1,0 +1,11 @@
+CREATE TABLE usuarios(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR (50) NOT NULL,
+    email VARCHAR (100) NOT NULL UNIQUE,
+    password_hash VARCHAR (255) NOT NULL,
+    direccion VARCHAR (255) NOT NULL,
+    telefono VARCHAR (100) NOT NULL NULL, 
+    rol INT NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    fecha_registro DATE DEFAULT CURRENT_DATE
+)
