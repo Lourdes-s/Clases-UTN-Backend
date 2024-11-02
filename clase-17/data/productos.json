@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "active": true,
+        "title": "Tv Samsung",
+        "price": 6700,
+        "categoria": "TECNOLOGIA",
+        "stock": 2
+    },
+    {
+        "id": 3,
+        "active": true,
+        "title": "PELUCHE AMONG US",
+        "price": 50,
+        "categoria": "JUGUETERIA",
+        "stock": 9
+    },
+    {
+        "id": 4,
+        "active": true,
+        "title": "PELUCHE PEPPA PIG",
+        "price": 50,
+        "categoria": "JUGUETERIA",
+        "stock": 9
+    },
+    {
+        "id": 5,
+        "active": true,
+        "title": "Ventilador liliana",
+        "price": 500,
+        "categoria": "TECNOLOGIA",
+        "stock": 1
+    },
+    {
+        "id": 6,
+        "active": false,
+        "title": "TV LG",
+        "price": 900,
+        "categoria": "TECNOLOGIA",
+        "stock": 3
+    },
+    {
+        "id": 7,
+        "active": true,
+        "title": "pepe",
+        "price": 676,
+        "categoria": "indumentaria",
+        "stock": 5
+    },
+    {
+        "id": 8,
+        "active": true,
+        "title": "hola",
+        "price": 100,
+        "categoria": "indumentaria",
+        "stock": 5
+    }
+]
