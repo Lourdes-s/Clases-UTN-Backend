@@ -1,0 +1,89 @@
+<h1>Cargar producto</h1>
+
+<form method="post" action="/product/new">
+    {{#each this.data.form_state}}
+        <div>
+            <label for="{{this.name}}">{{this.label}}</label>
+            {{#if this.isInput}}
+                <input 
+                    placeholder="{{this.placeholder}}" 
+                    id="{{this.name}} "
+                    name="{{this.name}}"
+                    value="{{this.valor}}"
+                    type="{{this.type}}"
+                />
+            {{/if}}
+            {{#if this.isTextarea}}
+                <textarea
+                    placeholder="{{this.placeholder}}" 
+                    id="{{this.name}} "
+                    name="{{this.name}}"
+                    value="{{this.valor}}"
+                >
+                {{this.valor}}
+                </textarea>
+            {{/if}}
+            {{#if this.errors.length}}
+                <ul>
+                    {{#each this.errors}}
+                        <li>
+                            {{this.message}}
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+    {{/each}}
+{{!--     <div>
+        <label for="name">Ingrese un nombre</label>
+        <input 
+        placeholder="tv samsung" 
+        id="nombre" 
+        name="nombre" 
+        value="{{this.data.form_state.nombre.valor}}"
+        />
+        {{#if this.data.form_state.nombre.error}}
+            <span>Error: {{this.data.form_state.nombre.error}}</span>
+        {{/if}}
+    </div>
+    <div>
+        <label for="precio">Ingrese un precio</label>
+        <input 
+        id="precio" 
+        name="precio"
+        value="{{this.data.form_state.precio.valor}}"
+        />
+    </div>
+    <div>
+        <label for="stock">Ingrese un stock</label>
+        <input 
+        id="stock" 
+        name="stock"
+        value="{{this.data.form_state.stock.valor}}"
+        />
+    </div>
+    <div>
+        <label>Seleccione la categoria de su producto:</label>
+        <br>
+        <span>Tecnologia</span>
+        <input type="checkbox" value="tecnologia" name="categoria"> 
+        <br>
+        <span>Hogar</span>
+        <input type="checkbox" value="hogar" name="categoria"> 
+        <br>
+        <span>Office</span>
+        <input type="checkbox" value="office" name="categoria"> 
+        <br>
+    </div>
+    <div>
+        <label for="descripcion">Ingrese un descripcion</label>
+        <textarea 
+        id="descripcion" 
+        name="descripcion"
+        value="{{this.data.form_states.descripcion.valor}}"
+        >
+        </textarea>
+    </div> --}}
+    <br>
+    <input type="submit" value="Crear producto">
+</form>
