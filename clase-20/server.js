@@ -19,13 +19,13 @@ app.use(express.json())
 const verifyString = (field_name, field_value) => {
     if(!(typeof(field_value) === 'string')){
         return {
-            error: ERRORS_VALIDATION_DICCIONARY.STRING_VALIDATION,
+            error: 'STRING_VALIDATION',
             message: field_name + ' debe ser un texto',
         }
     }
 }
 const verifyMinLength = (field_name, field_value, minLength) => {
-    if(!(field_value.length > minLength)){
+    if(field_name !== undefined && !(field_value.length > minLength)){
         return {
             error: 'MIN_LENGTH_VALIDATION',
             message: field_name + ' debe tener como minimo ' + minLength + ' caracteres',
@@ -186,7 +186,7 @@ app.post('/product/new', (req, res) => {
     const {nombre, descripcion, stock, precio} = req.body
     const campos_state = [
         {
-            valor: nombre.trim(),
+            valor: hadleInput (nombre),
             errors: [],
             component: 'input',
             type: 'text',
@@ -200,7 +200,7 @@ app.post('/product/new', (req, res) => {
             ]
         },
         {
-            valor: descripcion.trim(),
+            valor: hadleInput (descripcion),
             errors: [],
             component: 'textarea',
             isTextarea: true,
@@ -261,8 +261,18 @@ app.post('/product/new', (req, res) => {
             form_state: campos_state
         },
     }
+    console.log(view_props)
     res.render('new-product-view', view_props)
 })
+
+const hadleInput = (input) => {
+    if (input === undefined){
+        return input
+    }
+    else {
+        return input.trim()
+    }
+}
 
 app.listen(PORT,  () => {
 console.log('el servidor se esta escuchando en http://localhost:'+PORT)
