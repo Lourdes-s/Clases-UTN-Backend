@@ -241,7 +241,7 @@ export const putProductController = async  (req, res) => {
         .setMessage('Server Error')
         .setPayload({
             detail: error.message
-            })
+        })
         .build()
         res.status(500).json(response)
         console.error(error)
@@ -261,7 +261,7 @@ export const deleteProductController = async (req, res) => {
             response
             .setPayload({
                 detail: 'El id debe ser un numero'
-                })
+            })
             .build()
             return res.status(400).json(response)
         }
@@ -275,7 +275,7 @@ export const deleteProductController = async (req, res) => {
             .setMessage('No se encontro el producto')
             .setPayload({
                 product: null
-                })
+            })
             .build()
             return res.status(404).json(response)
         }
@@ -299,7 +299,7 @@ export const deleteProductController = async (req, res) => {
         .setMessage('Server Error')
         .setPayload({
             detail: error.message
-            })
+        })
         .build()
         return res.status(500).json(response)
     }
@@ -314,7 +314,7 @@ export const getProductByIdController = async(req, res) => {
         .setMessage('id invalido')
         .setPayload({
             detail: 'Debe ser un id numerico y mayor a 0'
-            })
+        })
         .build()
         return res.status(400).json(response)
     } 
@@ -339,9 +339,9 @@ export const getProductByIdController = async(req, res) => {
             .setMessage('El producto fue eliminado')
             .setPayload({
                 product: null
-                })
-                .build()
-                return res.status(410).json(response)
+            })
+            .build()
+            return res.status(410).json(response)
         }
         const response =  new ResponseBuilder()
         .setOk(true)
@@ -360,8 +360,8 @@ export const getProductByIdController = async(req, res) => {
         .setMessage('Server Error')
         .setPayload({
             detail: error.message
-            })
-            .build()
-            res.status(500).json(response)
+        })
+        .build()
+        res.status(500).json(response)
     }
 }

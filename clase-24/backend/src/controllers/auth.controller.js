@@ -103,7 +103,7 @@ export const registerController = async (req, res) => {
         if(error.code === 11000){
             const response = new ResponseBuilder()
             .setOk(false)
-            .setCode(400)
+            .setStatus(400)
             .setMessage('Email already registered')
             .setData({
                 detail: 'El email ya esta en uso'
@@ -137,7 +137,7 @@ export const verifyEmailController = async (req, res ) => {
     catch(error){
         const response = new ResponseBuilder()
         .setOk(false)
-        .setCode(500)
+        .setStatus(500)
         .setMessage('Ha ocurrido un error excepcional. Por favor intente mas tarde')
         .setData({
             detail: error.message
@@ -220,7 +220,7 @@ export const loginController = async (req, res) => {
     catch(error){
         const response = new ResponseBuilder()
         .setOk(false)
-        .setCode(500)
+        .setStatus(500)
         .setMessage('Ha ocurrido un error excepcional. Por favor intente mas tarde')
         .setData({
             detail: error.message
@@ -228,5 +228,67 @@ export const loginController = async (req, res) => {
         .build()
         return res.status(500).json(response)
     }
+}
 
+export const forgotPasswordController = async (req, res) => {
+    try {
+        const { email } = req.body  
+        const user = await User.findOne({email: email})
+        if (!user) {
+            const response = new ResponseBuilder()
+            .setOk(false)
+            .setStatus(404)
+            .setCode('USER_NOT_FIND')
+            .setMessage('No existe un usuario con el correo electrónico proporcionado')
+            .setData(
+                {
+                    detail: 'No existe un usuario con el correo electrónico proporcionado'
+                }
+            )
+            .build()
+            return res.status(404).json(response)
+        }
+        const reset_token = jwt.sign(
+            {
+                email: email
+            },
+            ENVIROMENT.SECRET_KEY,
+            {
+                expiresIn: '1d'
+            }
+        )
+
+        const resetUrl = 'http://localhost:5173/resetPassword' + reset_token
+
+        await transporterEmail.sendMail({
+            subject: 'Restablecer contraseña',
+            to: email,
+            html: `
+                <h1>Para poder restablecer tu contraseña ha click <a href='${resetUrl}'> aqui </a></h1>
+            `
+        })
+
+        const response = new ResponseBuilder()
+        .setOk(true)
+        .setCode('SUCCESS')
+        .setMessage('Se ha enviado un correo electrónico para restablecer la contraseña')
+        .setData(
+            {
+                detail: 'Se ha enviado un correo electrónico para restablecer la contraseña'
+                }
+            )
+        .build()
+        return res.status(200).json(response)
+    }
+    catch (error){
+        const response = new ResponseBuilder()
+        .setOk(false)
+        .setStatus(500)
+        .setMessage('Ha ocurrido un error excepcional. Por favor intente mas tarde')
+        .setData({
+            detail: error.message
+        })
+        .build()
+        return res.status(500).json(response)
+    }
 }
