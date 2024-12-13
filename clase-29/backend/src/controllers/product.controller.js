@@ -41,7 +41,7 @@ export const updateProductController = async (req, res, next) => {
             return next(new AppError('Se necesita la informacion del producto para actualizarlo', 400))
         }
 
-        const updatedProduct = await ProductRepository.updateProdct(product_id, updated_data)
+        const updatedProduct = await ProductRepository.updateProduct(product_id, updated_data)
         if (updatedProduct) {
             res.status(200).json(updatedProduct)
         } else {

@@ -8,7 +8,7 @@ class ProductRepository{
         return await new_product.save()
     }
 
-    static async updateProdct (product_id, update_data) { 
+    static async updateProduct (product_id, update_data) { 
         return Product.findByIdAndUpdate(product_id, update_data)
     }
 

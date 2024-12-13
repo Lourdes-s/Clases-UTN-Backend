@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScreen } from "./Screens"
 import HomeScreen from "./Screens/HomeScreen"
 import ProductDetailScreen from "./Screens/ProductDetailScreen"
+import ProtectedRoute from "./Components/ProtectedRoute"
 
     const App = () => {
         return (
@@ -14,8 +15,10 @@ import ProductDetailScreen from "./Screens/ProductDetailScreen"
                 <Route path="/register" element={<RegisterScreen/>}/>
                 <Route path="/forgot-password" element={<ForgotPasswordScreen/>}/>
                 <Route path="/auth/recovery-password/:reset_token" element={<RecoveryPasswordScreen/>}/>
-                <Route path="/home" element={<HomeScreen/>}/>
-                <Route path="/product/:product_id"  element={<ProductDetailScreen/>}/>
+                <Route element={<ProtectedRoute/>}>
+                    <Route path="/home" element={<HomeScreen/>}/>
+                    <Route path="/product/:product_id"  element={<ProductDetailScreen/>}/>
+                </Route>
             </Routes>
         </div>
     )

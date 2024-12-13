@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import useProducts from '../Hooks/useProducts'
 import { Link } from 'react-router-dom';
 
 
 const HomeScreen = () => {
     const {products_state, products_loading_state, products_error_state} = useProducts()
-    console.log('Loading:', products_loading_state);
-    console.log('Error:', products_error_state);
-    console.log('Products:', products_state);
-
     return (
         <div>
             <h1>Bienvenido</h1>
@@ -25,11 +21,7 @@ const HomeScreen = () => {
                                 products_state.map(
                                     (product) => {
                                         return (
-                                            <div key={product._id}>
-                                                <h2>{product.title}</h2>
-                                                <span>Precio: {product.price}</span>
-                                                <Link to={`/product/${product._id}`}>Ver detalle</Link>
-                                                </div>
+                                            <Product product={product} key={product._id}/>
                                         )
                                     }
                                 )
@@ -43,3 +35,14 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen
+
+const Product = ({product}) => {
+
+    return (
+        <div key={product._id}>
+            <h2>{product.title}</h2>
+            <span>Precio ${product.price}</span>
+            <Link to={`/product/${product._id}`}>Ver detalle</Link>
+        </div>
+    )
+}    
